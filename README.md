@@ -25,3 +25,4 @@ Enter your username and Personal Access Token in the form and click the `Fork!` 
 If you do not have a Personal Access Token with full repo permissions please follow the instructions [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 
 If the fork is successful, your browser will be redirected to the newly forked repo!
+If the fork is not successful, the page will display an error message.
