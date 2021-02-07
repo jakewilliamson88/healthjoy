@@ -37,7 +37,7 @@ def post_fork():
     # Fork the repo.
     response = api.fork()
 
-    # Get the redirect URL.
+    # If the fork was successful, get the redirect URL.
     if response.status_code == 202:
         redirect_url = response.json().get('html_url')
         if redirect_url:
