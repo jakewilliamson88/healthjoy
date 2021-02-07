@@ -5,6 +5,12 @@ This is the interface to the Github API.
 
 import requests
 
+#: The owner of the repo.
+OWNER = 'jakewilliamson88'
+
+#: The name of the repo
+REPO = 'healthjoy'
+
 
 class Github:
     """
@@ -47,4 +53,7 @@ class Github:
         :return:
         """
 
-        # TODO
+        # The endpoint to POST to.
+        endpoint = f'{Github.uri}/repos/{OWNER}/{REPO}/forks'
+
+        return self.__call(endpoint, 'POST')

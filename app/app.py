@@ -8,7 +8,7 @@ def create_app(app_name='FORKME'):
     app = Flask(app_name)
     Bootstrap(app)
 
-    # Register /fork blueprint.
+    # Register blueprints.
     from app.fork import fork
     app.register_blueprint(fork, url_prefix='/fork')
 

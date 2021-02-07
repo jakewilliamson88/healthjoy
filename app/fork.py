@@ -4,7 +4,7 @@ This is the Fork interface.
 """
 
 from api.github import Github
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, redirect
 
 fork = Blueprint('fork', __name__)
 
@@ -18,6 +18,7 @@ def get_fork():
 
     return render_template('fork.html')
 
+
 @fork.route('/', methods=['POST'])
 def post_fork():
     """
@@ -27,14 +28,25 @@ def post_fork():
     """
 
     # Get the username and password.
-    username = request.form.get('email')
+    username = request.form.get('username')
     password = request.form.get('password')
 
     # Get an interface to the Github API.
     api = Github(username, password)
 
-    print('\r\n\r\n')
-    print('GOT HERE')
-    print('\r\n\r\n')
+    # Fork the repo.
+    response = api.fork()
+
+    import pprint
+    pprint.pprint(response.json())
+
+    # Get the redirect URL.
+    if response.status_code == 202:
+        print("200 OK")
+        redirect_url = response.json().get('html_url')
+        print("REDIRECT URL: ", redirect_url)
+        if redirect_url:
+            print("GOT HERE")
+            return redirect(redirect_url)
 
     return get_fork()
