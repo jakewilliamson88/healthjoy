@@ -39,11 +39,8 @@ def post_fork():
 
     # Get the redirect URL.
     if response.status_code == 202:
-        print("200 OK")
         redirect_url = response.json().get('html_url')
-        print("REDIRECT URL: ", redirect_url)
         if redirect_url:
-            print("GOT HERE")
             return redirect(redirect_url)
 
     return get_fork()
