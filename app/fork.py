@@ -37,9 +37,6 @@ def post_fork():
     # Fork the repo.
     response = api.fork()
 
-    import pprint
-    pprint.pprint(response.json())
-
     # Get the redirect URL.
     if response.status_code == 202:
         print("200 OK")
